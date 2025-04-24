@@ -22,8 +22,18 @@ export const App = () => {
     setTodos([...todos, newTodo])
   }
 
-  const deleteTodo = (todoId: ID) => {
+  const deleteTodoHandler = (todoId: ID) => {
     setTodos(todos.filter(({ id }) => id !== todoId))
+  }
+
+  const toggleTodoHandler = (todoId: ID) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === todoId
+          ? { ...todo, isCompleted: !todo.isCompleted }
+          : { ...todo }
+      )
+    )
   }
 
   return (
@@ -32,7 +42,11 @@ export const App = () => {
 
       <TodoForm addTodo={addTodoHandler} />
       <TodosActions />
-      <TodoList todos={todos} deleteTodo={deleteTodo} />
+      <TodoList
+        todos={todos}
+        deleteTodo={deleteTodoHandler}
+        toggleTodo={toggleTodoHandler}
+      />
     </>
   )
 }

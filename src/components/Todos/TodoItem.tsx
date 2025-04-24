@@ -12,6 +12,7 @@ export const TodoItem: FC<TodoItemProps> = ({
   text,
   isCompleted,
   deleteTodo,
+  toggleTodo,
 }) => {
   return (
     <motion.div
@@ -19,7 +20,9 @@ export const TodoItem: FC<TodoItemProps> = ({
       animate={{ transform: 'translateY(0px)', opacity: 1, scale: 1 }}
       transition={{ type: 'spring', duration: 1.5, ease: 'easeInOut' }}
       exit={{ transform: 'translateY(150px)', opacity: 0, scale: 0 }}
-      className={styles['todo']}
+      className={`${styles['todo']} ${
+        isCompleted ? styles['completedTodo'] : ''
+      }`}
     >
       <RiTodoFill className={styles['todoIcon']} />
 
@@ -29,7 +32,8 @@ export const TodoItem: FC<TodoItemProps> = ({
         className={styles['deleteIcon']}
         onClick={() => deleteTodo(id)}
       />
-      <FaCheck className={styles['checkIcon']} />
+
+      <FaCheck className={styles['checkIcon']} onClick={() => toggleTodo(id)} />
     </motion.div>
   )
 }
