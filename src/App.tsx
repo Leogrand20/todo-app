@@ -6,7 +6,6 @@ import { TodosActions } from './components/Todos/TodosActions'
 import { TodoList } from './components/Todos/TodoList'
 
 import { ID, Todo } from './types/Todo'
-import { TodoContext } from './components/context/TodoContext'
 
 import './App.css'
 
@@ -61,11 +60,11 @@ export const App = () => {
         resetTodos={resetTodosHandler}
       />
 
-      <TodoContext.Provider
-        value={{ deleteTodo: deleteTodoHandler, toggleTodo: toggleTodoHandler }}
-      >
-        <TodoList todos={todos} />
-      </TodoContext.Provider>
+      <TodoList
+        todos={todos}
+        deleteTodo={deleteTodoHandler}
+        toggleTodo={toggleTodoHandler}
+      />
 
       {!!quantityCompletedTodos && (
         <h2>

@@ -1,16 +1,19 @@
-import { FC, useContext } from 'react'
+import { FC } from 'react'
 import { RiTodoFill, RiDeleteBin2Line } from 'react-icons/ri'
 import { FaCheck } from 'react-icons/fa6'
 import { motion } from 'motion/react'
 
 import { TodoItemProps } from '../../types/Todo'
-import { TodoContext } from '../context/TodoContext'
 
 import styles from './TodoItem.module.css'
 
-export const TodoItem: FC<TodoItemProps> = ({ id, text, isCompleted }) => {
-  const { deleteTodo, toggleTodo } = useContext(TodoContext)
-
+export const TodoItem: FC<TodoItemProps> = ({
+  id,
+  text,
+  isCompleted,
+  deleteTodo,
+  toggleTodo,
+}) => {
   return (
     <motion.div
       initial={{ transform: 'translateY(-150px)', opacity: 0, scale: 0 }}

@@ -12,9 +12,14 @@ export type TodoFormProps = {
 
 export type TodoListProps = {
   todos: Todo[]
+  deleteTodo: (todoId: ID) => void
+  toggleTodo: (todoId: ID) => void
 }
 
-export type TodoItemProps = Todo
+export interface TodoItemProps extends Todo {
+  deleteTodo: TodoListProps['deleteTodo']
+  toggleTodo: TodoListProps['toggleTodo']
+}
 
 export type TodosActionsProps = {
   completedTodosExist: boolean
