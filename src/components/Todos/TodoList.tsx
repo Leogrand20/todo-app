@@ -5,20 +5,11 @@ import { TodoListProps } from '../../types/Todo'
 
 import styles from './TodoList.module.css'
 
-export const TodoList: FC<TodoListProps> = ({
-  todos,
-  deleteTodo,
-  toggleTodo,
-}) => {
+export const TodoList: FC<TodoListProps> = ({ todos }) => {
   return (
     <div className={styles['todoListContainer']}>
       {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          {...todo}
-          deleteTodo={deleteTodo}
-          toggleTodo={toggleTodo}
-        />
+        <TodoItem key={todo.id} {...todo} />
       ))}
     </div>
   )
