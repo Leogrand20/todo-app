@@ -41,7 +41,7 @@
     "vite-plugin-legacy-swc": "^1.2.3"
   },
   "dependencies": {
-    "motion": "^12.8.2",
+    "motion": "^12.9.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
