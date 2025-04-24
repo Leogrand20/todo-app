@@ -9,7 +9,7 @@ import { TodoList } from './components/Todos/TodoList'
 import { TodosActions } from './components/Todos/TodosActions'
 
 export const App = () => {
-  const [todo, setTodo] = useState<Todo | null>(null)
+  const [todos, setTodo] = useState<Todo[] | []>([])
 
   const addTodoHandler = (text: string) => {
     const newTodo = {
@@ -18,10 +18,8 @@ export const App = () => {
       isCompleted: false,
     }
 
-    setTodo(newTodo)
+    setTodo([...todos, newTodo])
   }
-
-  console.log(todo)
 
   return (
     <>
@@ -29,7 +27,7 @@ export const App = () => {
 
       <TodoForm addTodo={addTodoHandler} />
       <TodosActions />
-      <TodoList todo={todo} />
+      <TodoList todos={todos} />
     </>
   )
 }

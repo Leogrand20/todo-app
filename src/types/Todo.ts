@@ -10,10 +10,10 @@ export type TodoFormProps = {
   addTodo: (value: string) => void
 }
 
-export type FormFields = {}
+export type TodoListProps = {
+  todos: Todo[]
+}
 
-export type TodoListProps = {}
-
-export type TodoItemProps = {}
+export type TodoItemProps = Todo
 
 export type TodosActionsProps = {}

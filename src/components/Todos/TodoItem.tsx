@@ -1,10 +1,13 @@
+import { FC } from 'react'
 import { RiTodoFill, RiDeleteBin2Line } from 'react-icons/ri'
 import { FaCheck } from 'react-icons/fa6'
 import { motion } from 'motion/react'
 
+import { TodoItemProps } from '../../types/Todo'
+
 import styles from './TodoItem.module.css'
 
-export const TodoItem = ({ id, text, isCompleted }) => {
+export const TodoItem: FC<TodoItemProps> = ({ id, text, isCompleted }) => {
   return (
     <motion.div
       initial={{ transform: 'translateY(-150px)', opacity: 0, scale: 0 }}
