@@ -36,6 +36,10 @@ export const App = () => {
     )
   }
 
+  const quantityCompletedTodos = todos.filter(
+    ({ isCompleted }) => isCompleted
+  ).length
+
   return (
     <>
       <h1>Todo App</h1>
@@ -47,6 +51,14 @@ export const App = () => {
         deleteTodo={deleteTodoHandler}
         toggleTodo={toggleTodoHandler}
       />
+
+      {!!quantityCompletedTodos && (
+        <h2>
+          {`You have ${quantityCompletedTodos} completed ${
+            quantityCompletedTodos === 1 ? 'todo' : 'todos'
+          }`}
+        </h2>
+      )}
     </>
   )
 }
