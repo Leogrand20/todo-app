@@ -8,6 +8,7 @@ import { TodoList } from './components/Todos/TodoList'
 import { ID, Todo } from './types/Todo'
 
 import './App.css'
+import { TodoContext } from './components/context/TodoContext'
 
 export const App = () => {
   const [todos, setTodos] = useState<Todo[]>([])
@@ -60,11 +61,11 @@ export const App = () => {
         resetTodos={resetTodosHandler}
       />
 
-      <TodoList
-        todos={todos}
-        deleteTodo={deleteTodoHandler}
-        toggleTodo={toggleTodoHandler}
-      />
+      <TodoContext.Provider
+        value={{ deleteTodo: deleteTodoHandler, toggleTodo: toggleTodoHandler }}
+      >
+        <TodoList todos={todos} />
+      </TodoContext.Provider>
 
       {!!quantityCompletedTodos && (
         <h2>
