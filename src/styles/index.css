@@ -1,0 +1,31 @@
+@import "@css/normalize";
+@import "@css/fonts";
+
+:root {
+  --color-black-000: #000;
+  --color-black-333: #333;
+  --color-white-333: #fff;
+  --text-100: 100px;
+  --size-100: 100px;
+  --font-roboto: "Roboto", sans-serif;
+  --font-tilda: "TildaSans", sans-serif;
+  --text-58: 58px;
+}
+
+body {
+  background: var(--color-black-333);
+  color: var(--color-white-333);
+  font-family: var(--font-roboto);
+}
+
+input,
+textarea {
+  color: var(--color-black-000);
+}
+
+#root {
+  text-align: center;
+  max-width: 600px;
+  margin-inline: auto;
+  margin-top: 200px;
+}

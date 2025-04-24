@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Roboto";
+  font-display: auto;
+  src: url("@fonts/Roboto-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TildaSans";
+  font-display: auto;
+  src: url("@fonts/TildaSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
