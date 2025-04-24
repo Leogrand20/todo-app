@@ -4,7 +4,7 @@ import { motion } from 'motion/react'
 
 import styles from './TodoItem.module.css'
 
-export const TodoItem = () => {
+export const TodoItem = ({ id, text, isCompleted }) => {
   return (
     <motion.div
       initial={{ transform: 'translateY(-150px)', opacity: 0, scale: 0 }}
@@ -15,7 +15,7 @@ export const TodoItem = () => {
     >
       <RiTodoFill className={styles['todoIcon']} />
 
-      <div className={styles['todoText']}></div>
+      <div className={styles['todoText']}>{text}</div>
 
       <RiDeleteBin2Line className={styles['deleteIcon']} />
       <FaCheck className={styles['checkIcon']} />

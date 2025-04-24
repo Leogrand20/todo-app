@@ -6,7 +6,9 @@ export interface Todo {
   isCompleted: boolean
 }
 
-export type TodoFormProps = {}
+export type TodoFormProps = {
+  addTodo: (value: string) => void
+}
 
 export type FormFields = {}
 

@@ -21,13 +21,15 @@ export const App = () => {
     setTodo(newTodo)
   }
 
+  console.log(todo)
+
   return (
     <>
       <h1>Todo App</h1>
 
-      <TodoForm />
+      <TodoForm addTodo={addTodoHandler} />
       <TodosActions />
-      <TodoList />
+      <TodoList todo={todo} />
     </>
   )
 }
