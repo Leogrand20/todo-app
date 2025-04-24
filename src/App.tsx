@@ -2,14 +2,15 @@ import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import { TodoForm } from './components/Todos/TodoForm'
+import { TodosActions } from './components/Todos/TodosActions'
+import { TodoList } from './components/Todos/TodoList'
+
+import { ID, Todo } from './types/Todo'
 
 import './App.css'
-import { Todo } from './types/Todo'
-import { TodoList } from './components/Todos/TodoList'
-import { TodosActions } from './components/Todos/TodosActions'
 
 export const App = () => {
-  const [todos, setTodo] = useState<Todo[] | []>([])
+  const [todos, setTodos] = useState<Todo[] | []>([])
 
   const addTodoHandler = (text: string) => {
     const newTodo = {
@@ -18,7 +19,11 @@ export const App = () => {
       isCompleted: false,
     }
 
-    setTodo([...todos, newTodo])
+    setTodos([...todos, newTodo])
+  }
+
+  const deleteTodo = (todoId: ID) => {
+    setTodos(todos.filter(({ id }) => id !== todoId))
   }
 
   return (
@@ -27,7 +32,7 @@ export const App = () => {
 
       <TodoForm addTodo={addTodoHandler} />
       <TodosActions />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} deleteTodo={deleteTodo} />
     </>
   )
 }

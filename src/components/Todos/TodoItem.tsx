@@ -7,7 +7,12 @@ import { TodoItemProps } from '../../types/Todo'
 
 import styles from './TodoItem.module.css'
 
-export const TodoItem: FC<TodoItemProps> = ({ id, text, isCompleted }) => {
+export const TodoItem: FC<TodoItemProps> = ({
+  id,
+  text,
+  isCompleted,
+  deleteTodo,
+}) => {
   return (
     <motion.div
       initial={{ transform: 'translateY(-150px)', opacity: 0, scale: 0 }}
@@ -20,7 +25,10 @@ export const TodoItem: FC<TodoItemProps> = ({ id, text, isCompleted }) => {
 
       <div className={styles['todoText']}>{text}</div>
 
-      <RiDeleteBin2Line className={styles['deleteIcon']} />
+      <RiDeleteBin2Line
+        className={styles['deleteIcon']}
+        onClick={() => deleteTodo(id)}
+      />
       <FaCheck className={styles['checkIcon']} />
     </motion.div>
   )
