@@ -10,7 +10,7 @@ import { ID, Todo } from './types/Todo'
 import './App.css'
 
 export const App = () => {
-  const [todos, setTodos] = useState<Todo[] | []>([])
+  const [todos, setTodos] = useState<Todo[]>([])
 
   const addTodoHandler = (text: string) => {
     const newTodo = {
