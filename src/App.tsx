@@ -44,6 +44,10 @@ export const App = () => {
     setTodos(todos.filter(({ isCompleted }) => !isCompleted))
   }
 
+  const resetTodosHandler = () => {
+    setTodos([])
+  }
+
   return (
     <>
       <h1>Todo App</h1>
@@ -53,6 +57,7 @@ export const App = () => {
       <TodosActions
         completedTodosExist={!!quantityCompletedTodos}
         deleteCompletedTodos={deleteCompletedTodosHandler}
+        resetTodos={resetTodosHandler}
       />
 
       <TodoList

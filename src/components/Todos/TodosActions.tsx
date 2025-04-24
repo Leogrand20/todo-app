@@ -9,10 +9,11 @@ import styles from './TodosActions.module.css'
 export const TodosActions: FC<TodosActionsProps> = ({
   completedTodosExist,
   deleteCompletedTodos,
+  resetTodos,
 }) => {
   return (
     <div className={styles['todosActionsContainer']}>
-      <Button title="Reset Todos">
+      <Button title="Reset Todos" onClick={resetTodos}>
         <RiRefreshLine />
       </Button>
 
