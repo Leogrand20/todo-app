@@ -45,7 +45,9 @@ export const App = () => {
       <h1>Todo App</h1>
 
       <TodoForm addTodo={addTodoHandler} />
-      <TodosActions />
+
+      <TodosActions completedTodosExist={!!quantityCompletedTodos} />
+
       <TodoList
         todos={todos}
         deleteTodo={deleteTodoHandler}

@@ -21,4 +21,6 @@ export interface TodoItemProps extends Todo {
   toggleTodo: TodoListProps['toggleTodo']
 }
 
-export type TodosActionsProps = {}
+export type TodosActionsProps = {
+  completedTodosExist: boolean
+}
