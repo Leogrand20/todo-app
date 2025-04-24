@@ -8,6 +8,7 @@ import styles from './TodosActions.module.css'
 
 export const TodosActions: FC<TodosActionsProps> = ({
   completedTodosExist,
+  deleteCompletedTodos,
 }) => {
   return (
     <div className={styles['todosActionsContainer']}>
@@ -15,7 +16,11 @@ export const TodosActions: FC<TodosActionsProps> = ({
         <RiRefreshLine />
       </Button>
 
-      <Button title="Delete Completed Todos" disabled={!completedTodosExist}>
+      <Button
+        title="Delete Completed Todos"
+        disabled={!completedTodosExist}
+        onClick={deleteCompletedTodos}
+      >
         <RiDeleteBin2Line />
       </Button>
     </div>

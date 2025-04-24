@@ -40,13 +40,20 @@ export const App = () => {
     ({ isCompleted }) => isCompleted
   ).length
 
+  const deleteCompletedTodosHandler = () => {
+    setTodos(todos.filter(({ isCompleted }) => !isCompleted))
+  }
+
   return (
     <>
       <h1>Todo App</h1>
 
       <TodoForm addTodo={addTodoHandler} />
 
-      <TodosActions completedTodosExist={!!quantityCompletedTodos} />
+      <TodosActions
+        completedTodosExist={!!quantityCompletedTodos}
+        deleteCompletedTodos={deleteCompletedTodosHandler}
+      />
 
       <TodoList
         todos={todos}

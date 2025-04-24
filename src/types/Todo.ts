@@ -23,4 +23,5 @@ export interface TodoItemProps extends Todo {
 
 export type TodosActionsProps = {
   completedTodosExist: boolean
+  deleteCompletedTodos: () => void
 }
