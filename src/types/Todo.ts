@@ -1,6 +1,10 @@
 export type ID = string | number
 
-export interface Todo {}
+export interface Todo {
+  text: string
+  id: string | number
+  isCompleted: boolean
+}
 
 export type TodoFormProps = {}
 
