@@ -4,9 +4,9 @@ import { FaCheck } from 'react-icons/fa6'
 import { motion } from 'motion/react'
 
 import { TodoItemProps } from '../../types/Todo'
+import { TodoContext } from '../context/TodoContext'
 
 import styles from './TodoItem.module.css'
-import { TodoContext } from '../context/TodoContext'
 
 export const TodoItem: FC<TodoItemProps> = ({ id, text, isCompleted }) => {
   const { deleteTodo, toggleTodo } = useContext(TodoContext)

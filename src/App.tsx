@@ -6,9 +6,9 @@ import { TodosActions } from './components/Todos/TodosActions'
 import { TodoList } from './components/Todos/TodoList'
 
 import { ID, Todo } from './types/Todo'
+import { TodoContext } from './components/context/TodoContext'
 
 import './App.css'
-import { TodoContext } from './components/context/TodoContext'
 
 export const App = () => {
   const [todos, setTodos] = useState<Todo[]>([])

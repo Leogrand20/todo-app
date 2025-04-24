@@ -14,7 +14,7 @@ export type TodoListProps = {
   todos: Todo[]
 }
 
-export interface TodoItemProps extends Todo {}
+export type TodoItemProps = Todo
 
 export type TodosActionsProps = {
   completedTodosExist: boolean
