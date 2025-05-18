@@ -1,9 +1,9 @@
-import { FC } from 'react'
 import { TodoItem } from './TodoItem'
-import { TodoListProps } from '../../types/Todo'
+import { useTodos } from '../../zustand/store'
 import styles from './TodoList.module.css'
 
-export const TodoList: FC<TodoListProps> = ({ todos }) => {
+export const TodoList = () => {
+  const todos = useTodos((state) => state.todos)
   return (
     <div className={styles['todoListContainer']}>
       {todos.map((todo) => (

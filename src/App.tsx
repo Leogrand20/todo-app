@@ -1,9 +1,8 @@
 import { TodoForm } from './components/Todos/TodoForm'
 import { TodosActions } from './components/Todos/TodosActions'
 import { TodoList } from './components/Todos/TodoList'
-
-import './App.css'
 import { useTodos } from './zustand/store'
+import './App.css'
 
 export const App = () => {
   const todos = useTodos((state) => state.todos)
@@ -23,7 +22,6 @@ export const App = () => {
   return (
     <>
       <h1>Todo App</h1>
-
       <TodoForm />
 
       <TodosActions
@@ -32,7 +30,7 @@ export const App = () => {
         resetTodos={resetTodosHandler}
       />
 
-      <TodoList todos={todos} />
+      <TodoList />
 
       {!!quantityCompletedTodos && (
         <h2>

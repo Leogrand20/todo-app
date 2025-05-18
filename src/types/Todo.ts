@@ -12,10 +12,6 @@ export type TodoFormProps = {
   addTodo: (value: string) => void
 }
 
-export type TodoListProps = {
-  todos: Todo[]
-}
-
 export type TodosActionsProps = {
   completedTodosExist: boolean
   deleteCompletedTodos: () => void
