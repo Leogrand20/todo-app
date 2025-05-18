@@ -8,7 +8,7 @@ export const App = () => {
   const todos = useTodos((state) => state.todos)
 
   const quantityCompletedTodos = todos.filter(
-    ({ isCompleted }) => isCompleted
+    ({ completed }) => completed
   ).length
 
   return (

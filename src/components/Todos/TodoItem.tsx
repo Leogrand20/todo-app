@@ -6,7 +6,7 @@ import { useTodos } from '../../zustand/store'
 import { TodoItemProps } from '../../types/Todo'
 import styles from './TodoItem.module.css'
 
-export const TodoItem: FC<TodoItemProps> = ({ id, text, isCompleted }) => {
+export const TodoItem: FC<TodoItemProps> = ({ id, title, completed }) => {
   const deleteTodo = useTodos((state) => state.deleteTodoHandler)
   const toggleTodo = useTodos((state) => state.toggleTodoHandler)
 
@@ -17,19 +17,22 @@ export const TodoItem: FC<TodoItemProps> = ({ id, text, isCompleted }) => {
       transition={{ type: 'spring', duration: 1.5, ease: 'easeInOut' }}
       exit={{ transform: 'translateY(150px)', opacity: 0, scale: 0 }}
       className={`${styles['todo']} ${
-        isCompleted ? styles['completedTodo'] : ''
+        completed ? styles['completedTodo'] : ''
       }`}
     >
       <RiTodoFill className={styles['todoIcon']} />
 
-      <div className={styles['todoText']}>{text}</div>
+      <div className={styles['todoText']}>{title}</div>
 
       <RiDeleteBin2Line
         className={styles['deleteIcon']}
-        onClick={() => deleteTodo(id)}
+        onClick={() => deleteTodo(String(id))}
       />
 
-      <FaCheck className={styles['checkIcon']} onClick={() => toggleTodo(id)} />
+      <FaCheck
+        className={styles['checkIcon']}
+        onClick={() => toggleTodo(String(id))}
+      />
     </motion.div>
   )
 }

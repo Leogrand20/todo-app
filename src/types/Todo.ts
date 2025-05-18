@@ -1,7 +1,8 @@
-export interface Todo {
-  text: string
-  id: string
-  isCompleted: boolean
+export type Todo = {
+  title: string
+  id: string | number
+  userId?: number
+  completed: boolean
 }
 
 export type TodoItemProps = Todo

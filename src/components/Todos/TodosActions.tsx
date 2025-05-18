@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { RiRefreshLine, RiDeleteBin2Line } from 'react-icons/ri'
+import { HiArrowDown } from 'react-icons/hi2'
 import { Button } from '../UI/Button'
 import { TodosActionsProps } from '../../types/Todo'
 import { useTodos } from '../../zustand/store'
@@ -12,6 +13,7 @@ export const TodosActions: FC<TodosActionsProps> = ({
     (state) => state.deleteCompletedTodosHandler
   )
   const resetTodos = useTodos((state) => state.resetTodosHandler)
+  const fetchTodo = useTodos((state) => state.fetchTodoHandler)
 
   return (
     <div className={styles['todosActionsContainer']}>
@@ -25,6 +27,10 @@ export const TodosActions: FC<TodosActionsProps> = ({
         onClick={deleteCompletedTodos}
       >
         <RiDeleteBin2Line />
+      </Button>
+
+      <Button title="Fetch Random Todo" onClick={fetchTodo}>
+        <HiArrowDown />
       </Button>
     </div>
   )

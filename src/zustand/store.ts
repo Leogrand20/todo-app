@@ -6,11 +6,12 @@ import { Todos, Todo } from '../types/Todo'
 
 type TodoState = {
   todos: Todos
-  addTodoHandler: (text: string) => void
+  addTodoHandler: (title: string) => void
   deleteTodoHandler: (todoId: string) => void
   toggleTodoHandler: (todoId: string) => void
   deleteCompletedTodosHandler: () => void
   resetTodosHandler: () => void
+  fetchTodoHandler: () => Promise<void>
 }
 
 export const useTodos = create<TodoState>()(
@@ -18,13 +19,13 @@ export const useTodos = create<TodoState>()(
     immer((set) => ({
       todos: [] as Todos,
 
-      addTodoHandler: (text: string) =>
+      addTodoHandler: (title: string) =>
         set(
           (state) => {
             const newTodo = {
-              text,
+              title,
               id: uuidv4(),
-              isCompleted: false,
+              completed: false,
             }
 
             state.todos.push(newTodo)
@@ -47,7 +48,7 @@ export const useTodos = create<TodoState>()(
           (state) => {
             state.todos = state.todos.map((todo: Todo) =>
               todo.id === todoId
-                ? { ...todo, isCompleted: !todo.isCompleted }
+                ? { ...todo, completed: !todo.completed }
                 : { ...todo }
             )
           },
@@ -58,7 +59,7 @@ export const useTodos = create<TodoState>()(
       deleteCompletedTodosHandler: () =>
         set(
           (state) => {
-            state.todos = state.todos.filter(({ isCompleted }) => !isCompleted)
+            state.todos = state.todos.filter(({ completed }) => !completed)
           },
           false,
           'deleteCompletedTodos'
@@ -72,6 +73,27 @@ export const useTodos = create<TodoState>()(
           false,
           'resetTodos'
         ),
+
+      fetchTodoHandler: async () => {
+        const res = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+        const data = (await res.json()) as Todo
+
+        console.log(data)
+
+        set(
+          (state) => {
+            const newTodo = {
+              id: String(data.id),
+              title: data.title,
+              completed: data.completed,
+            }
+
+            state.todos.push(newTodo)
+          },
+          false,
+          'fetchTodo'
+        )
+      },
     })),
     { name: 'Todos' }
   )
