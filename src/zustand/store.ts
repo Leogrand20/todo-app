@@ -13,7 +13,7 @@ type TodoState = {
 }
 
 export const useTodos = create<TodoState>()(
-  immer((set, get) => ({
+  immer((set) => ({
     todos: [] as Todos,
 
     addTodoHandler: (text: string) =>
