@@ -46,11 +46,11 @@ export const useTodos = create<TodoState>()(
       toggleTodoHandler: (todoId: string) =>
         set(
           (state) => {
-            state.todos = state.todos.map((todo: Todo) =>
-              todo.id === todoId
-                ? { ...todo, completed: !todo.completed }
-                : { ...todo }
-            )
+            const todo = state.todos.find((t) => t.id === todoId)
+            
+            if (todo) {
+              todo.completed = !todo.completed
+            }
           },
           false,
           'toggleTodo'
@@ -75,24 +75,34 @@ export const useTodos = create<TodoState>()(
         ),
 
       fetchTodoHandler: async () => {
-        const res = await fetch('https://jsonplaceholder.typicode.com/todos/1')
-        const data = (await res.json()) as Todo
+        try {
+          const res = await fetch(
+            'https://jsonplaceholder.typicode.com/todos/1'
+          )
+          const data = (await res.json()) as Todo
 
-        console.log(data)
-
-        set(
-          (state) => {
-            const newTodo = {
-              id: String(data.id),
-              title: data.title,
-              completed: data.completed,
-            }
-
-            state.todos.push(newTodo)
-          },
-          false,
-          'fetchTodo'
-        )
+          set(
+            (state) => {
+              const exists = state.todos.some(
+                (todo) => todo.id === String(data.id)
+              )
+              if (exists) {
+                alert('This todo is already added!')
+              } else {
+                const newTodo: Todo = {
+                  id: String(data.id),
+                  title: data.title,
+                  completed: data.completed,
+                }
+                state.todos.push(newTodo)
+              }
+            },
+            false,
+            'fetchTodo'
+          )
+        } catch (error) {
+          console.error('Ошибка при загрузке todo:', error)
+        }
       },
     })),
     { name: 'Todos' }
