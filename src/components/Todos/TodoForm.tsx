@@ -1,12 +1,13 @@
-import { FC, FormEvent, useState } from 'react'
+import { FormEvent, useState } from 'react'
 
 import { Button } from '../UI/Button'
-import { TodoFormProps } from '../../types/Todo'
 
 import styles from './TodoForm.module.css'
+import { useTodos } from '../../zustand/store'
 
-export const TodoForm: FC<TodoFormProps> = ({ addTodo }) => {
+export const TodoForm = () => {
   const [text, setText] = useState('')
+  const addTodo = useTodos((state) => state.addTodoHandler)
 
   const handlSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

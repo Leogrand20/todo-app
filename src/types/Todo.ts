@@ -1,10 +1,10 @@
-export type ID = string | number
-
 export interface Todo {
   text: string
-  id: ID
+  id: string
   isCompleted: boolean
 }
+
+export type Todos = Todo[]
 
 export type TodoFormProps = {
   addTodo: (value: string) => void
@@ -12,13 +12,8 @@ export type TodoFormProps = {
 
 export type TodoListProps = {
   todos: Todo[]
-  deleteTodo: (todoId: ID) => void
-  toggleTodo: (todoId: ID) => void
-}
-
-export interface TodoItemProps extends Todo {
-  deleteTodo: TodoListProps['deleteTodo']
-  toggleTodo: TodoListProps['toggleTodo']
+  deleteTodo: (todoId: string) => void
+  toggleTodo: (todoId: string) => void
 }
 
 export type TodosActionsProps = {

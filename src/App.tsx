@@ -5,28 +5,21 @@ import { TodoForm } from './components/Todos/TodoForm'
 import { TodosActions } from './components/Todos/TodosActions'
 import { TodoList } from './components/Todos/TodoList'
 
-import { ID, Todo } from './types/Todo'
+import { Todo } from './types/Todo'
 
 import './App.css'
+import { useTodos } from './zustand/store'
 
 export const App = () => {
-  const [todos, setTodos] = useState<Todo[]>([])
+  const todos = useTodos((state) => state.todos)
+  const addTodo = useTodos((state) => state.addTodoHandler)
+  const deleteTodo = useTodos((state) => state.deleteTodoHandler)
 
-  const addTodoHandler = (text: string) => {
-    const newTodo = {
-      text,
-      id: uuidv4(),
-      isCompleted: false,
-    }
-
-    setTodos([...todos, newTodo])
-  }
-
-  const deleteTodoHandler = (todoId: ID) => {
+  const deleteTodoHandler = (todoId: string) => {
     setTodos(todos.filter(({ id }) => id !== todoId))
   }
 
-  const toggleTodoHandler = (todoId: ID) => {
+  const toggleTodoHandler = (todoId: string) => {
     setTodos(
       todos.map((todo) =>
         todo.id === todoId
@@ -52,7 +45,7 @@ export const App = () => {
     <>
       <h1>Todo App</h1>
 
-      <TodoForm addTodo={addTodoHandler} />
+      <TodoForm />
 
       <TodosActions
         completedTodosExist={!!quantityCompletedTodos}
