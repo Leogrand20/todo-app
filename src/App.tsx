@@ -11,19 +11,12 @@ export const App = () => {
     ({ isCompleted }) => isCompleted
   ).length
 
-  const resetTodosHandler = () => {
-    setTodos([])
-  }
-
   return (
     <>
       <h1>Todo App</h1>
       <TodoForm />
 
-      <TodosActions
-        completedTodosExist={!!quantityCompletedTodos}
-        resetTodos={resetTodosHandler}
-      />
+      <TodosActions completedTodosExist={!!quantityCompletedTodos} />
 
       <TodoList />
 

@@ -1,19 +1,17 @@
 import { FC } from 'react'
 import { RiRefreshLine, RiDeleteBin2Line } from 'react-icons/ri'
-
 import { Button } from '../UI/Button'
 import { TodosActionsProps } from '../../types/Todo'
-
-import styles from './TodosActions.module.css'
 import { useTodos } from '../../zustand/store'
+import styles from './TodosActions.module.css'
 
 export const TodosActions: FC<TodosActionsProps> = ({
   completedTodosExist,
-  resetTodos,
 }) => {
   const deleteCompletedTodos = useTodos(
     (state) => state.deleteCompletedTodosHandler
   )
+  const resetTodos = useTodos((state) => state.resetTodosHandler)
 
   return (
     <div className={styles['todosActionsContainer']}>
