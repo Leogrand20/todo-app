@@ -37,7 +37,7 @@ export const useTodos = create<TodoState>()(
       deleteTodoHandler: (todoId: string) =>
         set(
           (state) => {
-            state.todos = state.todos.filter((todo: Todo) => todo.id !== todoId)
+            state.todos = state.todos.filter(({ id }) => id !== todoId)
           },
           false,
           'deleteTodo'
@@ -84,7 +84,7 @@ export const useTodos = create<TodoState>()(
           set(
             (state) => {
               const exists = state.todos.some(
-                (todo) => todo.id === String(data.id)
+                ({ id }) => id === String(data.id)
               )
 
               if (exists) {
