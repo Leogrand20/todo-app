@@ -4,6 +4,8 @@ export interface Todo {
   isCompleted: boolean
 }
 
+export type TodoItemProps = Todo
+
 export type Todos = Todo[]
 
 export type TodoFormProps = {
