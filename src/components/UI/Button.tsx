@@ -6,7 +6,6 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 export const Button: FC<ButtonProps> = ({
   disabled,
   children,
-  className,
   ...restProps
 }) => {
   return (
