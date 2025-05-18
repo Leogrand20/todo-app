@@ -1,9 +1,10 @@
 import { ToastContainer } from 'react-toastify'
+
 import 'react-toastify/dist/ReactToastify.css'
-import { useTodos } from './zustand/store'
 import { TodoForm } from './components/Todos/TodoForm'
-import { TodosActions } from './components/Todos/TodosActions'
 import { TodoList } from './components/Todos/TodoList'
+import { TodosActions } from './components/Todos/TodosActions'
+import { useTodos } from './zustand/store'
 import './App.css'
 
 export const App = () => {

@@ -1,8 +1,10 @@
 import { FC, memo } from 'react'
-import { RiTodoFill, RiDeleteBin2Line } from 'react-icons/ri'
 import { FaCheck } from 'react-icons/fa6'
-import { useTodos } from '../../zustand/store'
+import { RiTodoFill, RiDeleteBin2Line } from 'react-icons/ri'
+
 import { TodoItemProps } from '../../types/Todo'
+import { useTodos } from '../../zustand/store'
+
 import styles from './TodoItem.module.css'
 
 export const TodoItem: FC<TodoItemProps> = memo(({ id, title, completed }) => {

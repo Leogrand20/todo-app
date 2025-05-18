@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { TodoItem } from './TodoItem'
+
 import { useTodos } from '../../zustand/store'
+
+import { TodoItem } from './TodoItem'
 import styles from './TodoList.module.css'
 
 export const TodoList = () => {

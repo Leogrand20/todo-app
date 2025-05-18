@@ -1,10 +1,11 @@
-import { create } from 'zustand/react'
-import { immer } from 'zustand/middleware/immer'
-import { devtools } from 'zustand/middleware'
 import { toast } from 'react-toastify'
+import { devtools } from 'zustand/middleware'
+import { immer } from 'zustand/middleware/immer'
+import { create } from 'zustand/react'
 
+import { Todo, Todos } from '../types/Todo'
 import { createTodoFromSource } from '../utils/createTodoFromSource'
-import { Todos, Todo } from '../types/Todo'
+
 
 type TodoState = {
   todos: Todos
@@ -31,7 +32,7 @@ export const useTodos = create<TodoState>()(
             state.todos.push(newTodo)
           },
           false,
-          'addTodo'
+          'addTodo',
         ),
 
       deleteTodoHandler: (todoId: string) =>
@@ -40,7 +41,7 @@ export const useTodos = create<TodoState>()(
             state.todos = state.todos.filter(({ id }) => id !== todoId)
           },
           false,
-          'deleteTodo'
+          'deleteTodo',
         ),
 
       toggleTodoHandler: (todoId: string) =>
@@ -53,7 +54,7 @@ export const useTodos = create<TodoState>()(
             }
           },
           false,
-          'toggleTodo'
+          'toggleTodo',
         ),
 
       deleteCompletedTodosHandler: () =>
@@ -62,7 +63,7 @@ export const useTodos = create<TodoState>()(
             state.todos = state.todos.filter(({ completed }) => !completed)
           },
           false,
-          'deleteCompletedTodos'
+          'deleteCompletedTodos',
         ),
 
       resetTodosHandler: () =>
@@ -71,20 +72,20 @@ export const useTodos = create<TodoState>()(
             state.todos = []
           },
           false,
-          'resetTodos'
+          'resetTodos',
         ),
 
       fetchTodoHandler: async () => {
         try {
           const res = await fetch(
-            `https://jsonplaceholder.typicode.com/todos/${randomTodo(1, 200)}`
+            `https://jsonplaceholder.typicode.com/todos/${randomTodo(1, 200)}`,
           )
           const data = (await res.json()) as Todo
 
           set(
             (state) => {
               const exists = state.todos.some(
-                ({ id }) => id === String(data.id)
+                ({ id }) => id === String(data.id),
               )
 
               if (exists) {
@@ -99,7 +100,7 @@ export const useTodos = create<TodoState>()(
               }
             },
             false,
-            'fetchTodo'
+            'fetchTodo',
           )
         } catch (error) {
           toast.error('Ошибка при загрузке todo')
@@ -107,6 +108,6 @@ export const useTodos = create<TodoState>()(
         }
       },
     })),
-    { name: 'Todos' }
-  )
+    { name: 'Todos' },
+  ),
 )

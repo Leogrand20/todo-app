@@ -1,6 +1,8 @@
 import { FormEvent, useState } from 'react'
-import { Button } from '../UI/Button'
+
 import { useTodos } from '../../zustand/store'
+import { Button } from '../UI/Button'
+
 import styles from './TodoForm.module.css'
 
 export const TodoForm = () => {
