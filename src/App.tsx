@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { useTodos } from './zustand/store'
 import { TodoForm } from './components/Todos/TodoForm'
 import { TodosActions } from './components/Todos/TodosActions'
@@ -15,9 +17,7 @@ export const App = () => {
     <>
       <h1>Todo App</h1>
       <TodoForm />
-
       <TodosActions completedTodosExist={!!quantityCompletedTodos} />
-
       <TodoList />
 
       {!!quantityCompletedTodos && (
@@ -27,6 +27,8 @@ export const App = () => {
           }`}
         </h2>
       )}
+
+      <ToastContainer />
     </>
   )
 }

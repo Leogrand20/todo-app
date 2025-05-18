@@ -1,21 +1,16 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import { RiTodoFill, RiDeleteBin2Line } from 'react-icons/ri'
 import { FaCheck } from 'react-icons/fa6'
-import { motion } from 'motion/react'
 import { useTodos } from '../../zustand/store'
 import { TodoItemProps } from '../../types/Todo'
 import styles from './TodoItem.module.css'
 
-export const TodoItem: FC<TodoItemProps> = ({ id, title, completed }) => {
+export const TodoItem: FC<TodoItemProps> = memo(({ id, title, completed }) => {
   const deleteTodo = useTodos((state) => state.deleteTodoHandler)
   const toggleTodo = useTodos((state) => state.toggleTodoHandler)
 
   return (
-    <motion.div
-      initial={{ transform: 'translateY(-150px)', opacity: 0, scale: 0 }}
-      animate={{ transform: 'translateY(0px)', opacity: 1, scale: 1 }}
-      transition={{ type: 'spring', duration: 1.5, ease: 'easeInOut' }}
-      exit={{ transform: 'translateY(150px)', opacity: 0, scale: 0 }}
+    <div
       className={`${styles['todo']} ${
         completed ? styles['completedTodo'] : ''
       }`}
@@ -33,6 +28,6 @@ export const TodoItem: FC<TodoItemProps> = ({ id, title, completed }) => {
         className={styles['checkIcon']}
         onClick={() => toggleTodo(String(id))}
       />
-    </motion.div>
+    </div>
   )
-}
+})

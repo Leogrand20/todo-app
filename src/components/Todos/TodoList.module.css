@@ -1,3 +1,7 @@
 .todoListContainer {
   padding: 10px;
 }
+
+.todoWrapper {
+  margin-bottom: 1rem; /* или другой отступ между задачами */
+}
