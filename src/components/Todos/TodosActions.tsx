@@ -5,12 +5,16 @@ import { Button } from '../UI/Button'
 import { TodosActionsProps } from '../../types/Todo'
 
 import styles from './TodosActions.module.css'
+import { useTodos } from '../../zustand/store'
 
 export const TodosActions: FC<TodosActionsProps> = ({
   completedTodosExist,
-  deleteCompletedTodos,
   resetTodos,
 }) => {
+  const deleteCompletedTodos = useTodos(
+    (state) => state.deleteCompletedTodosHandler
+  )
+
   return (
     <div className={styles['todosActionsContainer']}>
       <Button title="Reset Todos" onClick={resetTodos}>

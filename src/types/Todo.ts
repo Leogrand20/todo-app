@@ -14,6 +14,5 @@ export type TodoFormProps = {
 
 export type TodosActionsProps = {
   completedTodosExist: boolean
-  deleteCompletedTodos: () => void
   resetTodos: () => void
 }

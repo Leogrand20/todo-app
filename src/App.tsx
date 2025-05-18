@@ -1,7 +1,7 @@
+import { useTodos } from './zustand/store'
 import { TodoForm } from './components/Todos/TodoForm'
 import { TodosActions } from './components/Todos/TodosActions'
 import { TodoList } from './components/Todos/TodoList'
-import { useTodos } from './zustand/store'
 import './App.css'
 
 export const App = () => {
@@ -10,10 +10,6 @@ export const App = () => {
   const quantityCompletedTodos = todos.filter(
     ({ isCompleted }) => isCompleted
   ).length
-
-  const deleteCompletedTodosHandler = () => {
-    setTodos(todos.filter(({ isCompleted }) => !isCompleted))
-  }
 
   const resetTodosHandler = () => {
     setTodos([])
@@ -26,7 +22,6 @@ export const App = () => {
 
       <TodosActions
         completedTodosExist={!!quantityCompletedTodos}
-        deleteCompletedTodos={deleteCompletedTodosHandler}
         resetTodos={resetTodosHandler}
       />
 
