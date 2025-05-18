@@ -12,8 +12,6 @@ export type TodoFormProps = {
 
 export type TodoListProps = {
   todos: Todo[]
-  deleteTodo: (todoId: string) => void
-  toggleTodo: (todoId: string) => void
 }
 
 export type TodosActionsProps = {

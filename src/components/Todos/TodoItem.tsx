@@ -2,18 +2,14 @@ import { FC } from 'react'
 import { RiTodoFill, RiDeleteBin2Line } from 'react-icons/ri'
 import { FaCheck } from 'react-icons/fa6'
 import { motion } from 'motion/react'
-
+import { useTodos } from '../../zustand/store'
 import { TodoItemProps } from '../../types/Todo'
-
 import styles from './TodoItem.module.css'
 
-export const TodoItem: FC<TodoItemProps> = ({
-  id,
-  text,
-  isCompleted,
-  deleteTodo,
-  toggleTodo,
-}) => {
+export const TodoItem: FC<TodoItemProps> = ({ id, text, isCompleted }) => {
+  const deleteTodo = useTodos((state) => state.deleteTodoHandler)
+  const toggleTodo = useTodos((state) => state.toggleTodoHandler)
+
   return (
     <motion.div
       initial={{ transform: 'translateY(-150px)', opacity: 0, scale: 0 }}

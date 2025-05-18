@@ -7,6 +7,7 @@ type TodoState = {
   todos: Todos
   addTodoHandler: (text: string) => void
   deleteTodoHandler: (todoId: string) => void
+  toggleTodoHandler: (todoId: string) => void
 }
 
 export const useTodos = create<TodoState>()(
@@ -27,6 +28,15 @@ export const useTodos = create<TodoState>()(
     deleteTodoHandler: (todoId: string) =>
       set((state) => {
         state.todos = state.todos.filter((todo: Todo) => todo.id !== todoId)
+      }),
+
+    toggleTodoHandler: (todoId: string) =>
+      set((state) => {
+        state.todos = state.todos.map((todo: Todo) =>
+          todo.id === todoId
+            ? { ...todo, isCompleted: !todo.isCompleted }
+            : { ...todo }
+        )
       }),
   }))
 )
