@@ -1,11 +1,21 @@
+import { ButtonHTMLAttributes, FC } from 'react'
 import styles from './Button.module.css'
 
-export const Button = (props: any) => {
-  const { disabled, children } = props
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 
+export const Button: FC<ButtonProps> = ({
+  disabled,
+  children,
+  className,
+  ...restProps
+}) => {
   return (
     <>
-      <button {...props} className={styles['button']} disabled={disabled}>
+      <button
+        {...restProps}
+        className={styles['button'] ?? ''}
+        disabled={disabled}
+      >
         {children}
       </button>
     </>
