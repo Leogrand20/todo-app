@@ -1,6 +1,6 @@
 import { FC, memo } from 'react'
 import { FaCheck } from 'react-icons/fa6'
-import { RiTodoFill, RiDeleteBin2Line } from 'react-icons/ri'
+import { RiDeleteBin2Line,RiTodoFill } from 'react-icons/ri'
 
 import { TodoItemProps } from '../../types/Todo'
 import { useTodos } from '../../zustand/store'

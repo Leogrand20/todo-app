@@ -6,7 +6,6 @@ import { create } from 'zustand/react'
 import { Todo, Todos } from '../types/Todo'
 import { createTodoFromSource } from '../utils/createTodoFromSource'
 
-
 type TodoState = {
   todos: Todos
   addTodoHandler: (title: string) => void
@@ -84,9 +83,7 @@ export const useTodos = create<TodoState>()(
 
           set(
             (state) => {
-              const exists = state.todos.some(
-                ({ id }) => id === String(data.id),
-              )
+              const exists = state.todos.some(({ id }) => id === String(data.id))
 
               if (exists) {
                 toast.warn('Этот todo уже добавлен!')

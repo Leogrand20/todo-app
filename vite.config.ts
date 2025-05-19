@@ -1,6 +1,5 @@
-import { resolve } from 'path'
-
 import react from '@vitejs/plugin-react-swc'
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import copy from 'vite-plugin-cp'
 import htmlTemplate from 'vite-plugin-html-template-mpa'

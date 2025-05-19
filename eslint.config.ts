@@ -6,11 +6,11 @@ import jsxA11y from 'eslint-plugin-jsx-a11y'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
+import pluginImportSort from 'eslint-plugin-simple-import-sort'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
-  // Игнорируемые файлы
   { ignores: ['dist', '**/*.d.ts'] },
 
   // Конфигурация для TypeScript файлов
@@ -24,18 +24,19 @@ export default tseslint.config(
       parserOptions: {
         project: './tsconfig.eslint.json',
         sourceType: 'module',
-        ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
         jsxImportSource: 'react',
       },
     },
     plugins: {
+      '@typescript-eslint': tseslint.plugin,
       css,
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       'jsx-a11y': jsxA11y,
       import: importPlugin,
+      'simple-import-sort': pluginImportSort,
     },
     settings: {
       react: { version: 'detect' },
@@ -47,55 +48,48 @@ export default tseslint.config(
       },
     },
     rules: {
-      // JS + TS
       ...js.configs.recommended.rules,
       ...tseslint.configs.recommended[0].rules,
       ...tseslint.configs.recommended[1].rules,
 
-      // React
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off',
       'react/jsx-uses-react': 'off',
 
-      // React Refresh
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
-      // A11y (вручную)
       'jsx-a11y/anchor-is-valid': 'warn',
       'jsx-a11y/alt-text': 'warn',
 
-      // CSS
       'css/no-duplicate-imports': 'error',
 
-      // Import
       'import/no-duplicates': 'error',
       'import/newline-after-import': 'warn',
-      'import/order': [
+
+      // ✅ Новый порядок через simple-import-sort
+      'import/order': 'off',
+      'simple-import-sort/imports': [
         'warn',
         {
-          groups: ['type', 'builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-          pathGroups: [
-            {
-              pattern: '**/*.css',
-              group: 'index',
-              position: 'before',
-            },
-            {
-              pattern: 'react-toastify/dist/ReactToastify.css',
-              group: 'index',
-              position: 'before',
-            },
+          groups: [
+            // Сайд-эффекты (включая CSS)
+            ['^\\u0000'],
+            // Внешние библиотеки
+            ['^@?\\w'],
+            // Абсолютные пути
+            ['^[^.]'],
+            // Относительные пути
+            ['^\\.'],
+            // CSS в самом низу
+            ['\\.css$'],
           ],
-          pathGroupsExcludedImportTypes: ['builtin'],
-          alphabetize: {
-            order: 'asc',
-            caseInsensitive: true,
-          },
-          'newlines-between': 'always',
-          warnOnUnassignedImports: true,
         },
       ],
+      'simple-import-sort/exports': 'warn',
     },
   },
 
@@ -118,6 +112,7 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
       'jsx-a11y': jsxA11y,
       import: importPlugin,
+      'simple-import-sort': pluginImportSort,
     },
     settings: {
       react: { version: 'detect' },
@@ -129,56 +124,34 @@ export default tseslint.config(
       },
     },
     rules: {
-      // JS базовые
       ...js.configs.recommended.rules,
-
-      // React
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off',
       'react/jsx-uses-react': 'off',
 
-      // React Refresh
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
-      // A11y
       'jsx-a11y/anchor-is-valid': 'warn',
       'jsx-a11y/alt-text': 'warn',
 
-      // CSS
       'css/no-duplicate-imports': 'error',
 
-      // Import
       'import/no-duplicates': 'error',
       'import/newline-after-import': 'warn',
-      'import/order': [
+
+      // Порядок импортов — simple-import-sort
+      'import/order': 'off',
+      'simple-import-sort/imports': [
         'warn',
         {
-          groups: ['type', 'builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-          pathGroups: [
-            {
-              pattern: '**/*.css',
-              group: 'index',
-              position: 'before',
-            },
-            {
-              pattern: 'react-toastify/dist/ReactToastify.css',
-              group: 'index',
-              position: 'before',
-            },
-          ],
-          pathGroupsExcludedImportTypes: ['builtin'],
-          alphabetize: {
-            order: 'asc',
-            caseInsensitive: true,
-          },
-          'newlines-between': 'always',
-          warnOnUnassignedImports: true,
+          groups: [['^\\u0000'], ['^@?\\w'], ['^[^.]'], ['^\\.'], ['\\.css$']],
         },
       ],
+      'simple-import-sort/exports': 'warn',
     },
   },
 
-  // Отключаем конфликты с Prettier
+  // Prettier
   prettier,
 )
