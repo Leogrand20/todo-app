@@ -1,19 +1,17 @@
 import { ToastContainer } from 'react-toastify'
 
+import 'react-toastify/dist/ReactToastify.css'
+
+import './App.css'
 import { TodoForm } from './components/Todos/TodoForm'
 import { TodoList } from './components/Todos/TodoList'
 import { TodosActions } from './components/Todos/TodosActions'
 import { useTodos } from './zustand/store'
 
-import 'react-toastify/dist/ReactToastify.css'
-import './App.css'
-
 export const App = () => {
   const todos = useTodos((state) => state.todos)
 
-  const quantityCompletedTodos = todos.filter(
-    ({ completed }) => completed,
-  ).length
+  const quantityCompletedTodos = todos.filter(({ completed }) => completed).length
 
   return (
     <>

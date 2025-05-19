@@ -20,12 +20,13 @@
     "preview": "vite preview --open",
     "buildpreview": "tsc -b && vite build&&vite preview --host --port 4000 --open",
     "lint": "eslint .",
-    "lintfix": "npx eslint src --fix"
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
     "@eslint/css": "^0.8.1",
     "@eslint/js": "^9.27.0",
-    "@types/node": "^22.15.18",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^22.15.19",
     "@types/react": "^19.1.4",
     "@types/react-dom": "^19.1.5",
     "@typescript-eslint/eslint-plugin": "^8.32.1",

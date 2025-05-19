@@ -1,6 +1,7 @@
 import css from '@eslint/css'
 import js from '@eslint/js'
-import importPlugin from 'eslint-plugin-import'
+import prettier from 'eslint-config-prettier'
+import * as importPlugin from 'eslint-plugin-import'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
@@ -58,10 +59,7 @@ export default tseslint.config(
       'react/jsx-uses-react': 'off',
 
       // React Refresh
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
       // A11y (вручную)
       'jsx-a11y/anchor-is-valid': 'warn',
@@ -76,16 +74,26 @@ export default tseslint.config(
       'import/order': [
         'warn',
         {
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            'parent',
-            'sibling',
-            'index',
+          groups: ['type', 'builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          pathGroups: [
+            {
+              pattern: '**/*.css',
+              group: 'index',
+              position: 'before',
+            },
+            {
+              pattern: 'react-toastify/dist/ReactToastify.css',
+              group: 'index',
+              position: 'before',
+            },
           ],
-          alphabetize: { order: 'asc', caseInsensitive: true },
+          pathGroupsExcludedImportTypes: ['builtin'],
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
           'newlines-between': 'always',
+          warnOnUnassignedImports: true,
         },
       ],
     },
@@ -131,10 +139,7 @@ export default tseslint.config(
       'react/jsx-uses-react': 'off',
 
       // React Refresh
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
       // A11y
       'jsx-a11y/anchor-is-valid': 'warn',
@@ -149,18 +154,31 @@ export default tseslint.config(
       'import/order': [
         'warn',
         {
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            'parent',
-            'sibling',
-            'index',
+          groups: ['type', 'builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          pathGroups: [
+            {
+              pattern: '**/*.css',
+              group: 'index',
+              position: 'before',
+            },
+            {
+              pattern: 'react-toastify/dist/ReactToastify.css',
+              group: 'index',
+              position: 'before',
+            },
           ],
-          alphabetize: { order: 'asc', caseInsensitive: true },
+          pathGroupsExcludedImportTypes: ['builtin'],
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
           'newlines-between': 'always',
+          warnOnUnassignedImports: true,
         },
       ],
     },
   },
+
+  // Отключаем конфликты с Prettier
+  prettier,
 )
